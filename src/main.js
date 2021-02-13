@@ -1,17 +1,25 @@
 import Vue from "vue";
+import Router from "vue-router";
 import App from "./App.vue";
 import store from "./store";
-import "./plagins/bootstrap/index";
-
+import "./plugins/bootstrap";
 
 Vue.config.productionTip = false;
+Vue.use(Router);
+
+const router = new Router({
+  // mode: "history",
+  base: process.env.BASE_URL,
+  routes: [
+    {
+      path: "/",
+      component: App
+    }
+  ]
+});
 
 new Vue({
+  router,
   store,
   render: h => h(App)
 }).$mount("#app");
-
-
-// https://www.omdbapi.com/
-// https://bootstrap-vue.org/docs/components/button
-// Когда создаешь и добавляешь инфу в файл env нужно перезапустить сервер иначе будет выкидывать ошибки с аксиос и т.д. или просто не будет работать
